@@ -4,5 +4,5 @@ CREATE TABLE Contato (
     Email varchar(255) NOT NULL,
     Endereco varchar(255)NOT NULL,
     DataNascimento DATE NOT NULL,
-    PRIMARY KEY (id) 
+    PRIMARY KEY (ContatoID) 
 );
