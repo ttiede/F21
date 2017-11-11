@@ -11,6 +11,7 @@ import java.util.List;
 
 import br.com.caelum.Bean.ContatoBean;
 import br.com.caelum.JDBC.ConnectionFactory;
+import br.com.caelum.exception.DaoException;
 
 public class ContatoDao {
 	protected Connection connection;
@@ -38,12 +39,18 @@ public class ContatoDao {
 
 	}
 
-	public List<ContatoBean> getAll() {
-		List<ContatoBean> contatos = new ArrayList<>();
+	public List<ContatoBean> getContatos(String where) {
+		List<ContatoBean> contatos = new ArrayList<ContatoBean>();
 
 		Connection connection = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Contato");
+
+			if (where != null) {
+				stmt = connection.prepareStatement("SELECT * FROM Contato WHERE ?");
+				stmt.setString(1, String.valueOf(where));
+			}
+
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				ContatoBean contato = new ContatoBean();
@@ -63,9 +70,42 @@ public class ContatoDao {
 			return contatos;
 
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			throw new DaoException(null, e);
 		}
-
 	}
 
+	public List<ContatoBean> getById(Integer id) {
+		List<ContatoBean> contatos = new ArrayList<ContatoBean>();
+
+		Connection connection = ConnectionFactory.getConnection();
+		try {
+			PreparedStatement stmt = null;
+			String querySearch = "SELECT * FROM Contato WHERE ContatoID = ?";
+			if (id != null) {
+				stmt = connection.prepareStatement(querySearch);
+				stmt.setLong(1, id);
+			}
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ContatoBean contato = new ContatoBean();
+				contato.setContatoID(rs.getLong("ContatoID"));
+				contato.setNome(rs.getString("Nome"));
+				contato.setEmail(rs.getString("Email"));
+				contato.setEndereco(rs.getString("Endereco"));
+
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("DataNascimento"));
+				contato.setDataNascimento(data);
+				contatos.add(contato);
+				contato = null;
+			}
+			rs.close();
+			stmt.close();
+			return contatos;
+
+		} catch (SQLException e) {
+			throw new DaoException(null, e);
+		}
+	}
 }
