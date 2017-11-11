@@ -8,15 +8,18 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 
+import br.com.caelum.Dao.ContatoDao;
+import br.com.caelum.JDBC.ConnectionFactory;
+
 public class QuantidadeServlet extends HttpServlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, java.io.IOException {
 		Connection connection = null;
-		//connection = new ConnectionFactory().getConnection();
+		connection =  ConnectionFactory.getConnection();
 		
-		//ContatoDao dataBaseContato = new ContatoDao(connection);
+		ContatoDao dataBaseContato = new ContatoDao(connection);
 
-		int sizeContatos = 0 ;//dataBaseContato.getContatos(null).size();
+		int sizeContatos = dataBaseContato.getContatos(null).size();
 		
 		PrintWriter out = res.getWriter();
 		
