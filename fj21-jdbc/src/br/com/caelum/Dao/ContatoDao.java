@@ -14,7 +14,7 @@ import br.com.caelum.JDBC.ConnectionFactory;
 import br.com.caelum.exception.DaoException;
 
 public class ContatoDao {
-	protected Connection connection;
+	private final Connection connection;
 
 	public ContatoDao(Connection connection) {
 		this.connection = connection;
@@ -40,7 +40,7 @@ public class ContatoDao {
 	}
 
 	public List<ContatoBean> getContatos(String where) {
-		List<ContatoBean> contatos = new ArrayList<ContatoBean>();
+		List<ContatoBean> contatos = new ArrayList<>();
 
 		Connection connection = ConnectionFactory.getConnection();
 		try {
@@ -63,7 +63,6 @@ public class ContatoDao {
 				data.setTime(rs.getDate("DataNascimento"));
 				contato.setDataNascimento(data);
 				contatos.add(contato);
-				contato = null;
 			}
 			rs.close();
 			stmt.close();
@@ -75,7 +74,7 @@ public class ContatoDao {
 	}
 
 	public List<ContatoBean> getById(Integer id) {
-		List<ContatoBean> contatos = new ArrayList<ContatoBean>();
+		List<ContatoBean> contatos = new ArrayList<>();
 
 		Connection connection = ConnectionFactory.getConnection();
 		try {
@@ -86,8 +85,8 @@ public class ContatoDao {
 				stmt.setLong(1, id);
 			}
 
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
+			ResultSet rs = stmt != null ? stmt.executeQuery() : null;
+			while (rs != null ? rs.next() : false) {
 				ContatoBean contato = new ContatoBean();
 				contato.setContatoID(rs.getLong("ContatoID"));
 				contato.setNome(rs.getString("Nome"));
@@ -98,8 +97,8 @@ public class ContatoDao {
 				data.setTime(rs.getDate("DataNascimento"));
 				contato.setDataNascimento(data);
 				contatos.add(contato);
-				contato = null;
 			}
+			assert rs != null;
 			rs.close();
 			stmt.close();
 			return contatos;
