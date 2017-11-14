@@ -43,5 +43,4 @@ public class ApplicationPersisteContato {
 			connection.close();
 		}
 	}
-
 }
