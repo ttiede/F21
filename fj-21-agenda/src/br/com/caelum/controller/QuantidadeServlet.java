@@ -2,6 +2,7 @@ package br.com.caelum.controller;
 
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -15,7 +16,12 @@ public class QuantidadeServlet extends HttpServlet {
 	@Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, java.io.IOException {
 		Connection connection = null;
-		connection =  ConnectionFactory.getConnection();
+		try {
+			connection =  ConnectionFactory.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		ContatoDao dataBaseContato = new ContatoDao(connection);
 

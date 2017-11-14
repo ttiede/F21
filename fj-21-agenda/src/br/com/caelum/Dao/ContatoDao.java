@@ -10,7 +10,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.caelum.Bean.ContatoBean;
-import br.com.caelum.JDBC.ConnectionFactory;
 import br.com.caelum.exception.DaoException;
 
 public class ContatoDao {
@@ -36,13 +35,31 @@ public class ContatoDao {
 		stmt.execute();
 
 		stmt.close();
+	}
+
+	public void update(ContatoBean contato1) throws SQLException {
+
+		String sql = "UPDATE Contato SET Nome = ? ,Email = ? ,Endereco = ? ,DataNascimento = ? WHERE ContatoID = ?";
+
+		PreparedStatement stmt = connection.prepareStatement(sql);
+
+		long dataNascimentoMileSegundos = contato1.getDataNascimento().getTimeInMillis();
+
+		stmt.setString(1, contato1.getNome());
+		stmt.setString(2, contato1.getEmail());
+		stmt.setString(3, contato1.getEndereco());
+		stmt.setDate(4, new Date(dataNascimentoMileSegundos));
+		stmt.setLong(5, contato1.getContatoID());
+
+		stmt.execute();
+
+		stmt.close();
 
 	}
 
 	public List<ContatoBean> getContatos(String where) {
 		List<ContatoBean> contatos = new ArrayList<>();
 
-		Connection connection = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Contato");
 
@@ -76,7 +93,6 @@ public class ContatoDao {
 	public List<ContatoBean> getById(Integer id) {
 		List<ContatoBean> contatos = new ArrayList<>();
 
-		Connection connection = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = null;
 			String querySearch = "SELECT * FROM Contato WHERE ContatoID = ?";
@@ -106,5 +122,25 @@ public class ContatoDao {
 		} catch (SQLException e) {
 			throw new DaoException(null, e);
 		}
+	}
+
+	public String deleteById(Long id) {
+		try {
+			PreparedStatement stmt = null;
+			String queryDelete = "DELETE FROM Contato WHERE ContatoID = ?";
+			if (id != null) {
+				stmt = connection.prepareStatement(queryDelete);
+
+				stmt.setLong(1, id);
+
+				stmt.execute();
+
+				stmt.close();
+				return "Contato excluído:"+ id;
+			}
+		}catch (SQLException e) {
+			throw new DaoException("falha ao excluir contato:"+ id, e);
+		}
+		return null;
 	}
 }
