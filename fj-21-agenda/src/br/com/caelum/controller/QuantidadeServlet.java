@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 import br.com.caelum.Dao.ContatoDao;
 import br.com.caelum.JDBC.ConnectionFactory;
+
+@WebServlet("/oi")
 
 public class QuantidadeServlet extends HttpServlet {
 	@Override
