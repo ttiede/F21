@@ -74,7 +74,7 @@ public class ContatoDAO {
 		Connection connection = null;
 		try {
 			connection = ConnectionFactory.getConnection();
-			PreparedStatement stmt = connection.prepareStatement(where);
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Contato");
 
 			if (where != null) {
 				stmt = connection.prepareStatement("SELECT * FROM Contato WHERE ?");
@@ -82,6 +82,7 @@ public class ContatoDAO {
 			}
 
 			ResultSet rs = stmt.executeQuery();
+			
 			while (rs.next()) {
 				ContatoVO contato = new ContatoVO();
 				contato.setContatoID(rs.getLong("ContatoID"));
