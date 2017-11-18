@@ -1,4 +1,4 @@
-package br.com.caelum.JDBC;
+package br.com.caelum.factory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

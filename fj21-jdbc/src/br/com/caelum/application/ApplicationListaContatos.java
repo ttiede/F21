@@ -5,28 +5,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.caelum.Bean.ContatoBean;
-import br.com.caelum.Dao.ContatoDao;
-import br.com.caelum.JDBC.ConnectionFactory;
+import br.com.caelum.dao.ContatoDAO;
+import br.com.caelum.factory.ConnectionFactory;
+import br.com.caelum.vo.ContatoVO;
 
 public class ApplicationListaContatos {
 
 	public static void main(String[] args) throws SQLException {
-		List<ContatoBean> contatos = new ArrayList<ContatoBean>();
+		List<ContatoVO> contatos = new ArrayList<ContatoVO>();
 		;
 
 		Connection connection = null;
 		try {
 			connection = ConnectionFactory.getConnection();
 
-			ContatoDao dataBaseContato = new ContatoDao(connection);
+			ContatoDAO dataBaseContato = new ContatoDAO(connection);
 
 			contatos = dataBaseContato.getContatos(null);
 			// contatos = dataBaseContato.getContato("nome like 'Ti%'");
 			//contatos = dataBaseContato.getById(8);
 
 			
-			for (ContatoBean contato : contatos) {
+			for (ContatoVO contato : contatos) {
 				System.out.println("===================== Contato =====================");
 				System.out.println("Nome: " + contato.getNome());
 				System.out.println("Email: " + contato.getEmail());

@@ -1,4 +1,4 @@
-package br.com.caelum.Dao;
+package br.com.caelum.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import br.com.caelum.Bean.ContatoBean;
-import br.com.caelum.exception.DaoException;
+import br.com.caelum.exception.DAOException;
+import br.com.caelum.vo.ContatoVO;
 
-public class ContatoDao {
+public class ContatoDAO {
 	private final Connection connection;
 
-	public ContatoDao(Connection connection) {
+	public ContatoDAO(Connection connection) {
 		this.connection = connection;
 	}
 
-	public void insert(ContatoBean contato1) throws SQLException {
+	public void insert(ContatoVO contato1) throws SQLException {
 
 		String sql = "INSERT INTO Contato (Nome,Email,Endereco,DataNascimento) values (?,?,?,?)";
 
@@ -37,7 +37,7 @@ public class ContatoDao {
 		stmt.close();
 	}
 
-	public void update(ContatoBean contato1) throws SQLException {
+	public void update(ContatoVO contato1) throws SQLException {
 
 		String sql = "UPDATE Contato SET Nome = ? ,Email = ? ,Endereco = ? ,DataNascimento = ? WHERE ContatoID = ?";
 
@@ -57,8 +57,8 @@ public class ContatoDao {
 
 	}
 
-	public List<ContatoBean> getContatos(String where) {
-		List<ContatoBean> contatos = new ArrayList<>();
+	public List<ContatoVO> getContatos(String where) {
+		List<ContatoVO> contatos = new ArrayList<>();
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Contato");
@@ -70,7 +70,7 @@ public class ContatoDao {
 
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				ContatoBean contato = new ContatoBean();
+				ContatoVO contato = new ContatoVO();
 				contato.setContatoID(rs.getLong("ContatoID"));
 				contato.setNome(rs.getString("Nome"));
 				contato.setEmail(rs.getString("Email"));
@@ -86,12 +86,12 @@ public class ContatoDao {
 			return contatos;
 
 		} catch (SQLException e) {
-			throw new DaoException(null, e);
+			throw new DAOException(null, e);
 		}
 	}
 
-	public List<ContatoBean> getById(Integer id) {
-		List<ContatoBean> contatos = new ArrayList<>();
+	public List<ContatoVO> getById(Integer id) {
+		List<ContatoVO> contatos = new ArrayList<>();
 
 		try {
 			PreparedStatement stmt = null;
@@ -103,7 +103,7 @@ public class ContatoDao {
 
 			ResultSet rs = stmt != null ? stmt.executeQuery() : null;
 			while (rs != null ? rs.next() : false) {
-				ContatoBean contato = new ContatoBean();
+				ContatoVO contato = new ContatoVO();
 				contato.setContatoID(rs.getLong("ContatoID"));
 				contato.setNome(rs.getString("Nome"));
 				contato.setEmail(rs.getString("Email"));
@@ -120,7 +120,7 @@ public class ContatoDao {
 			return contatos;
 
 		} catch (SQLException e) {
-			throw new DaoException(null, e);
+			throw new DAOException(null, e);
 		}
 	}
 
@@ -139,7 +139,7 @@ public class ContatoDao {
 				return "Contato excluído:"+ id;
 			}
 		}catch (SQLException e) {
-			throw new DaoException("falha ao excluir contato:"+ id, e);
+			throw new DAOException("falha ao excluir contato:"+ id, e);
 		}
 		return null;
 	}

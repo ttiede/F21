@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Calendar;
 
-import br.com.caelum.Bean.ContatoBean;
-import br.com.caelum.Dao.ContatoDao;
-import br.com.caelum.JDBC.ConnectionFactory;
+import br.com.caelum.dao.ContatoDAO;
+import br.com.caelum.factory.ConnectionFactory;
+import br.com.caelum.vo.ContatoVO;
 
 public class ApplicationPersisteContato {
 
@@ -15,7 +15,7 @@ public class ApplicationPersisteContato {
 		try {
 			connection = ConnectionFactory.getConnection();
 
-			ContatoBean contato1 = new ContatoBean();
+			ContatoVO contato1 = new ContatoVO();
 
 			Calendar dataNascimento = Calendar.getInstance();
 			dataNascimento.set(1983, 9, 7);
@@ -25,10 +25,10 @@ public class ApplicationPersisteContato {
 			contato1.setEndereco("Diogo de Faria 111");
 			contato1.setNome("Tiago Tiede");
 
-			ContatoDao dataBaseContato = new ContatoDao(connection);
+			ContatoDAO dataBaseContato = new ContatoDAO(connection);
 			dataBaseContato.insert(contato1);
 
-			ContatoBean contato2 = new ContatoBean();
+			ContatoVO contato2 = new ContatoVO();
 			Calendar dataNascimento2 = Calendar.getInstance();
 			
 			dataNascimento2.set(1983, 11, 22);
