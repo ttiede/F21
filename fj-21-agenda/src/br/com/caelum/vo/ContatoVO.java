@@ -1,8 +1,8 @@
-package br.com.caelum.Bean;
+package br.com.caelum.vo;
 
 import java.util.Calendar;
 
-public class ContatoBean {
+public class ContatoVO {
 	private Long ContatoID;
 	private String nome;
 	private String email;
