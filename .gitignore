@@ -7,3 +7,9 @@ target
 #intelliJ config files
 .idea/
 *.iml
+build/
+../.metadata/
+../.recommenders/
+../Servers/
+../apache-tomcat-7.0.47.zip
+.classpath
