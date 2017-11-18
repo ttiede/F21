@@ -30,7 +30,7 @@ public class AdicionaServlet extends HttpServlet {
 		out.println("<body>");
 		out.println(String.format("contato:<br>nome %s<br> email: %s<br> endereçco: %s<br> data de nascimento: %s",
 				contatoVO.getNome(), contatoVO.getEmail(), contatoVO.getEndereco(),
-				DateUtil.dateFormatDayMonthYear(contatoVO.getDataNascimento().getInstance())));
+				DateUtil.dateFormatDayMonthYear(contatoVO.getDataNascimento())));
 		out.println("<p> Adicionado com sucesso");
 
 		out.println("</body>");

@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horizontal Nav & Subnav for Bootstrap</title>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css"
+	rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="background-color:#2A3B6D !important;">
+
+	<div class="container" style="margin-top: 65px;background-color:#2A3B6D !important;">
+		<h1>Oops!</h1>
+		<h2>404 Not Found</h2>
+		<div class="error-details">Sorry, an error has occured,
+			Requested page not found!</div>
+		<div class="error-actions">
+			<div class="row">
+				<div class="col-md-2 col-md-offset-5">
+					<img src="./assets/img/dalek.jpg" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
+		type="text/javascript"></script>
+</body>
+</html>
