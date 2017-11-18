@@ -16,19 +16,21 @@ import br.com.caelum.vo.ContatoVO;
 
 public class AdicionaServlet extends HttpServlet {
 	@Override
-	public void service(ServletRequest req, ServletResponse res) throws ServletException, java.io.IOException {
+	public void service(final ServletRequest req, final ServletResponse res)
+			throws ServletException, java.io.IOException {
 		final ContatoDAO dataBaseContato = new ContatoDAO();
 
 		final ContatoVO contatoVO = buildContatoVO(req);
 
 		dataBaseContato.insert(contatoVO);
 
-		PrintWriter out = res.getWriter();
+		final PrintWriter out = res.getWriter();
 
 		out.println("<html>");
 		out.println("<body>");
 		out.println(String.format("contato:<br>nome %s<br> email: %s<br> endereçco: %s<br> data de nascimento: %s",
-				contatoVO.getNome(), contatoVO.getEmail(), contatoVO.getEndereco(), DateUtil.dateFormatDayMonthYear(contatoVO.getDataNascimento().getInstance())));
+				contatoVO.getNome(), contatoVO.getEmail(), contatoVO.getEndereco(),
+				DateUtil.dateFormatDayMonthYear(contatoVO.getDataNascimento().getInstance())));
 		out.println("<p> Adicionado com sucesso");
 
 		out.println("</body>");
@@ -36,8 +38,8 @@ public class AdicionaServlet extends HttpServlet {
 
 	}
 
-	private ContatoVO buildContatoVO(ServletRequest req) {
-		ContatoVO contatoVO = new ContatoVO();
+	private ContatoVO buildContatoVO(final ServletRequest req) {
+		final ContatoVO contatoVO = new ContatoVO();
 
 		contatoVO.setNome(req.getParameter("nome"));
 		contatoVO.setEmail(req.getParameter("email"));

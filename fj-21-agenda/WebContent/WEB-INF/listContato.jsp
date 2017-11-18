@@ -1,3 +1,9 @@
+<%@page import="br.com.caelum.vo.ContatoVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- <jsp:useBean id="dao" class="br.com.caelum.dao.ContatoDAO"></jsp:useBean>-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -89,28 +95,22 @@
 	<div class="container" style="margin-top: 65px;">
 		<div class="row">
 			<div class="col-sm-12">
-				<form action="adicionaContato" method="post">
-					<div class="form-group">
-						<label for="nome">nome:</label> <input type="text"
-							class="form-control" id="nome" name="nome">
-					</div>
-
-					<div class="form-group">
-						<label for="email">Email address:</label> <input type="email"
-							class="form-control" id="email" name="email">
-					</div>
-
-					<div class="form-group">
-						<label for="endereco">Endereço:</label> <input type="text"
-							class="form-control" id="endereco" name="endereco">
-					</div>
-
-					<div class="form-group">
-						<label for="data-de-nascimento">Data de Nascimento:</label> <input type="text"
-							class="form-control" id="dataDeNascimento" name="dataDeNascimento">
-					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+				<table class="table">
+					<c:forEach items="${contatoVOs}" var="contatoVO">
+						<tr>
+							<td>${contatoVO.nome}</td>
+							<td><c:if test="${empty contatoVO.email}">
+    								${contatoVO.email}
+								</c:if> <c:if test="${not  empty contatoVO.email}">
+									<a href="mailto:${contatoVO.email}"> ${contatoVO.email} </a>
+								</c:if></td>
+							<td>${contatoVO.endereco}</td>
+							<td>
+								<fmt:formatDate value="${contatoVO.dataNascimento.time}" var="formattedDate"  type="date" pattern="dd/MM/yyyy" />${formattedDate}							
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 	</div>

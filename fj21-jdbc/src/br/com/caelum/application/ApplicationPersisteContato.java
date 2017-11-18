@@ -12,7 +12,7 @@ public class ApplicationPersisteContato {
 
 	public static void main(String[] args) throws SQLException {
 		Connection connection = null;
-		try {
+
 			connection = ConnectionFactory.getConnection();
 
 			ContatoVO contato1 = new ContatoVO();
@@ -25,7 +25,7 @@ public class ApplicationPersisteContato {
 			contato1.setEndereco("Diogo de Faria 111");
 			contato1.setNome("Tiago Tiede");
 
-			ContatoDAO dataBaseContato = new ContatoDAO(connection);
+			ContatoDAO dataBaseContato = new ContatoDAO();
 			dataBaseContato.insert(contato1);
 
 			ContatoVO contato2 = new ContatoVO();
@@ -39,8 +39,6 @@ public class ApplicationPersisteContato {
 			
 			dataBaseContato.insert(contato1);
 
-		} finally {
-			connection.close();
-		}
+		
 	}
 }

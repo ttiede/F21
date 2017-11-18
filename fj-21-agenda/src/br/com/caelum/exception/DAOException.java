@@ -1,8 +1,8 @@
 package br.com.caelum.exception;
 
 public class DAOException extends RuntimeException {
-	public DAOException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public DAOException(final String message, final Throwable cause) {
+		super(message, cause);
+	}
 
 }

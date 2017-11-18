@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class DateUtil {
 	public static String dateFormatDayMonthYear(final Calendar dateCalendar){
-		 DateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy");
+		final DateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy");
 		 return dateFormat.format(dateCalendar.getTime());
 	}
 

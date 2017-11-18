@@ -16,10 +16,10 @@ public class ApplicationListaContatos {
 		;
 
 		Connection connection = null;
-		try {
+
 			connection = ConnectionFactory.getConnection();
 
-			ContatoDAO dataBaseContato = new ContatoDAO(connection);
+			ContatoDAO dataBaseContato = new ContatoDAO();
 
 			contatos = dataBaseContato.getContatos(null);
 			// contatos = dataBaseContato.getContato("nome like 'Ti%'");
@@ -36,9 +36,7 @@ public class ApplicationListaContatos {
 				System.out.println("\n");
 			}
 
-		} finally {
-			connection.close();
-		}
+	
 	}
 
 }
