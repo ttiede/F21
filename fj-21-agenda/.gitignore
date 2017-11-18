@@ -13,3 +13,19 @@ build/
 ../Servers/
 ../apache-tomcat-7.0.47.zip
 .classpath
+# Eclipse
+.classpath
+.project
+.settings/
+ 
+# Intellij
+.idea/
+*.iml
+*.iws
+ 
+# Mac
+.DS_Store
+ 
+# Maven
+log/
+target/
