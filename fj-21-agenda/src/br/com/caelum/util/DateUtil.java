@@ -23,10 +23,9 @@ public class DateUtil {
 	}
 
 	public static Calendar stringToDate(final String dateString) {
-		Calendar dataNascimento = Calendar.getInstance();
-		Date date = dateParseDayMonthYear(dateString);
+		final Calendar dataNascimento = Calendar.getInstance();
+		final Date date = dateParseDayMonthYear(dateString);
 		dataNascimento.setTime(date);
 		return dataNascimento;
 	}
-	
 }

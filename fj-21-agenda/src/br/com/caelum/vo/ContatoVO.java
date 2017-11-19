@@ -13,7 +13,7 @@ public class ContatoVO {
 		return ContatoID;
 	}
 
-	public void setContatoID(Long contatoID) {
+	public void setContatoID(final Long contatoID) {
 		ContatoID = contatoID;
 	}
 
@@ -21,7 +21,7 @@ public class ContatoVO {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(final String nome) {
 		this.nome = nome;
 	}
 
@@ -29,7 +29,7 @@ public class ContatoVO {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -37,7 +37,7 @@ public class ContatoVO {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(final String endereco) {
 		this.endereco = endereco;
 	}
 
@@ -45,7 +45,7 @@ public class ContatoVO {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Calendar dataNascimento) {
+	public void setDataNascimento(final Calendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 }
