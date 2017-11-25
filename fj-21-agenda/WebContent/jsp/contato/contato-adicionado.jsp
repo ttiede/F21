@@ -27,25 +27,7 @@
 	<div class="container" style="margin-top: 65px;">
 		<div class="row">
 			<div class="col-sm-12">
-				<table class="table">
-					<c:forEach items="${contatoVOs}" var="contatoVO">
-						<tr>
-							<td>${contatoVO.nome}</td>
-							<td><c:if test="${empty contatoVO.email}">
-    								${contatoVO.email}
-								</c:if> <c:if test="${not  empty contatoVO.email}">
-									<a href="mailto:${contatoVO.email}"> ${contatoVO.email} </a>
-								</c:if></td>
-							<td>${contatoVO.endereco}</td>
-							<td>
-								<fmt:formatDate value="${contatoVO.dataNascimento.time}" var="formattedDate"  type="date" pattern="dd/MM/yyyy" />${formattedDate}							
-							</td>
-							<td>
-								<a href="mvc?logica=RemoveContatoLogic&id=${contatoVO.contatoID}" >Remover</a>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
+			Contato ${param.nome} adicionado com sucesso!
 			</div>
 		</div>
 	</div>

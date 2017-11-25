@@ -3,18 +3,18 @@ package br.com.caelum.vo;
 import java.util.Calendar;
 
 public class ContatoVO {
-	private Long ContatoID;
+	private Long contatoID;
 	private String nome;
 	private String email;
 	private String endereco;
 	private Calendar dataNascimento;
 
 	public Long getContatoID() {
-		return ContatoID;
+		return contatoID;
 	}
 
 	public void setContatoID(final Long contatoID) {
-		ContatoID = contatoID;
+		this.contatoID = contatoID;
 	}
 
 	public String getNome() {
