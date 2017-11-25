@@ -14,6 +14,11 @@ import br.com.caelum.factory.ConnectionFactory;
 import br.com.caelum.vo.ContatoVO;
 
 public class ContatoDAO {
+	public Connection  connection;
+	
+	public ContatoDAO(Connection  connection) {
+		this.connection = connection;
+	}
 
 	public void insert(ContatoVO contato) {
 		final String sql = "INSERT INTO Contato (Nome,Email,Endereco,DataNascimento) values (?,?,?,?)";
@@ -49,8 +54,6 @@ public class ContatoDAO {
 
 		} catch (SQLException e) {
 			throw new DAOException(null, e);
-		} finally {
-			this.closeConnection(connection);
 		}
 	}
 
@@ -76,8 +79,6 @@ public class ContatoDAO {
 			return contatos;
 		} catch (SQLException e) {
 			throw new DAOException(null, e);
-		} finally {
-			this.closeConnection(connection);
 		}
 	}
 
@@ -109,8 +110,6 @@ public class ContatoDAO {
 			}
 		} catch (SQLException e) {
 			throw new DAOException(String.format("falha ao excluir contato: %s",id), e);
-		} finally {
-			this.closeConnection(connection);
 		}
 		return null;
 	}
@@ -132,19 +131,7 @@ public class ContatoDAO {
 			stmt.close();
 		} catch (SQLException e) {
 			throw new DAOException(null, e);
-		} finally {
-			this.closeConnection(connection);
 		}
 
-	}
-
-	private void closeConnection(final Connection connection) {
-		if (connection != null) {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new DAOException("Error ao fechar conexao:", e);
-			}
-		}
 	}
 }

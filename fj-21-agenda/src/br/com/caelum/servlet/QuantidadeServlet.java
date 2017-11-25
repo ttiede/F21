@@ -1,6 +1,7 @@
 package br.com.caelum.servlet;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -17,7 +18,7 @@ public class QuantidadeServlet extends HttpServlet {
 	public void service(final ServletRequest req, final ServletResponse res)
 			throws ServletException, java.io.IOException {
 		final Integer sizeContatos;
-		final ContatoDAO dataBaseContato = new ContatoDAO();
+		final ContatoDAO dataBaseContato = new ContatoDAO((Connection) req.getAttribute("connection"));
 		sizeContatos = dataBaseContato.getContatos(null).size();
 
 		final PrintWriter out = res.getWriter();

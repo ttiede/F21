@@ -1,5 +1,6 @@
 package br.com.caelum.servlet;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ public class ListContatosServlet extends HttpServlet {
 	@Override
 	public void service(final ServletRequest req, final ServletResponse res)
 			throws ServletException, java.io.IOException {
-		final ContatoDAO dataBaseContato = new ContatoDAO();
+		final ContatoDAO dataBaseContato = new ContatoDAO((Connection) req.getAttribute("connection"));
 
 		final List<ContatoVO> contatoVOs = dataBaseContato.getContatos(null);
 		System.out.println(contatoVOs);

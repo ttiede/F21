@@ -1,6 +1,6 @@
 package br.com.caelum.servlet;
 
-import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ public class AdicionaContatoServlet extends HttpServlet {
 	@Override
 	public void service(final ServletRequest req, final ServletResponse res)
 			throws ServletException, java.io.IOException {
-		final ContatoDAO dataBaseContato = new ContatoDAO();
+		final ContatoDAO dataBaseContato = new ContatoDAO((Connection) req.getAttribute("connection"));
 
 		final ContatoVO contatoVO = buildContatoVO(req);
 
