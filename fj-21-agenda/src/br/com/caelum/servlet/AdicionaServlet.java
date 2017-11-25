@@ -44,7 +44,7 @@ public class AdicionaServlet extends HttpServlet {
 		contatoVO.setNome(req.getParameter("nome"));
 		contatoVO.setEmail(req.getParameter("email"));
 		contatoVO.setEndereco(req.getParameter("endereco"));
-		contatoVO.setDataNascimento(DateUtil.stringToDate(req.getParameter("dataDeNascimento")));
+		contatoVO.setDataNascimento(DateUtil.stringToDate(req.getParameter("dataNascimento")));
 		return contatoVO;
 	}
 }

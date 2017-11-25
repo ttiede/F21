@@ -9,7 +9,7 @@ import java.util.Date;
 public class DateUtil {
 	public static String dateFormatDayMonthYear(final Calendar dateCalendar) {
 		final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		return dateFormat.format(dateCalendar.getInstance().getTime());
+		return dateFormat.format(dateCalendar.getTime());
 	}
 
 	public static Date dateParseDayMonthYear(final String dateString) {
@@ -23,10 +23,9 @@ public class DateUtil {
 	}
 
 	public static Calendar stringToDate(final String dateString) {
-		Calendar dataNascimento = Calendar.getInstance();
-		Date date = dateParseDayMonthYear(dateString);
+		final Calendar dataNascimento = Calendar.getInstance();
+		final Date date = dateParseDayMonthYear(dateString);
 		dataNascimento.setTime(date);
 		return dataNascimento;
 	}
-	
 }
