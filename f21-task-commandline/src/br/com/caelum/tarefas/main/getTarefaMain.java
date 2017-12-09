@@ -11,7 +11,7 @@ public class getTarefaMain {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("tarefas");
 		EntityManager manager =  factory.createEntityManager();
 		manager.getTransaction().begin();
-		Tarefa t =  manager.find(Tarefa.class, 2l);
+		Tarefa t =  manager.find(Tarefa.class, 1l);
 		manager.getTransaction().commit();
 		
 		System.out.println("Id da tarefa:" + t.getId());
